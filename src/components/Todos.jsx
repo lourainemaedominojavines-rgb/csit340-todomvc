@@ -20,12 +20,16 @@ function Todos() {
       }
 
     function handleToggle(id) {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
-    )
-  }
+        setTodos(
+        todos.map((todo) =>
+            todo.id === id ? { ...todo, completed: !todo.completed } : todo
+        )
+        )
+    }
+
+    function handleDelete(id) {
+        setTodos(todos.filter((todo) => todo.id !== id))
+    }
 
   return (
     <section className="mx-auto max-w-[550px]">
@@ -54,22 +58,6 @@ function Todos() {
           </label>
 
           <ul>
-            
-            {/* <li className="group relative flex items-center border-b border-[#ededed] text-2xl">
-              <input
-                type="checkbox"
-                className="ml-[15px] size-[30px] shrink-0 cursor-pointer accent-[#59a193]"
-              />
-              <span className="flex-1 py-[15px] pr-[60px] pl-[15px] break-all">
-                Learn the spread operator
-              </span>
-              <button
-                type="button"
-                className="absolute right-[10px] hidden size-10 cursor-pointer text-[30px] text-[#949494] group-hover:block hover:text-[#c18585]"
-              >
-                ×
-              </button>
-            </li> */}
 
             {todos.map((todo) => (
               <li
@@ -93,31 +81,14 @@ function Todos() {
                 {todo.text}
                 </span>
                 <button
-                  type="button">
+                  type="button"
+                  onClick={() => handleDelete(todo.id)}>
                     x
                   </button>
                 </li>
                   
             ))}
             
-
-            {/* <li className="group relative flex items-center border-b border-[#ededed] text-2xl">
-              <input
-                type="checkbox"
-                checked
-                readOnly
-                className="ml-[15px] size-[30px] shrink-0 cursor-pointer accent-[#59a193]"
-              />
-              <span className="flex-1 py-[15px] pr-[60px] pl-[15px] break-all text-[#949494] line-through">
-                Set up Tailwind
-              </span>
-              <button
-                type="button"
-                className="absolute right-[10px] hidden size-10 cursor-pointer text-[30px] text-[#949494] group-hover:block hover:text-[#c18585]"
-              >
-                ×
-              </button>
-            </li> */}
           </ul>
 
         </main>
