@@ -19,6 +19,14 @@ function Todos() {
         setText('')
       }
 
+    function handleToggle(id) {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    )
+  }
+
   return (
     <section className="mx-auto max-w-[550px]">
       <h1 className="text-center text-[80px] font-extralight text-[#b83f45]">
@@ -28,11 +36,11 @@ function Todos() {
       <div className="relative bg-white shadow-[0_2px_4px_0_rgba(0,0,0,0.2),0_25px_50px_0_rgba(0,0,0,0.1)]">
         <form onSubmit={handleSubmit}>
           <input
+            type="text"
             value={text}
             onChange={(e) => setText(e.target.value)}
-
-            className="h-[65px] w-full py-4 pr-4 pl-[60px] text-2xl shadow-[inset_0_-2px_1px_rgba(0,0,0,0.03)] outline-none placeholder:text-black/40 placeholder:italic focus:shadow-[0_0_2px_2px_#cf7d7d]"
             placeholder="What needs to be done?"
+            className="w-full px-[16px] py-[16px] pl-[60px] text-2xl outline-none placeholder:text-[#949494]"
            />
         </form>
 
@@ -71,7 +79,7 @@ function Todos() {
                 <input
                   type="checkbox"
                   checked={todo.completed}
-                  readOnly
+                  onChange={() => handleToggle(todo.id)}
                   className="ml-[15px] size-[30px] shrink-0 cursor-pointer accent-[#59a193]"
                 />
 
